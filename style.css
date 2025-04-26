@@ -1,0 +1,143 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('/assets/image/glossy-love-hearts-3840x2160-16300.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+}
+
+.slider {
+    width: 150px;
+    height: 200px;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: slider 20s infinite linear;
+}
+
+.slider{
+    width: 150px;
+    height: 200px;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: slider 20s infinite linear;
+    position: relative;
+}
+
+.slider__item{
+    position: absolute;
+    inset: 0; 
+    /* transform: rotateY(0deg) translateZ(355px); */
+    transform: rotateY(calc(var(--position) * 45deg)) translateZ(355px);
+}
+
+.slider__item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+/* 
+.slider__item:nth-child(1){
+    transform: rotateY(0deg) translateZ(355px);
+}
+
+.slider__item:nth-child(2){
+    transform: rotateY(45deg) translateZ(355px);
+}
+
+.slider__item:nth-child(3){
+    transform: rotateY(90deg) translateZ(355px);
+}
+
+.slider__item:nth-child(4){
+    transform: rotateY(135deg) translateZ(355px);
+}
+
+.slider__item:nth-child(5){
+    transform: rotateY(180deg) translateZ(355px);
+}
+
+.slider__item:nth-child(6){
+    transform: rotateY(225deg) translateZ(355px);
+}
+
+.slider__item:nth-child(7){
+    transform: rotateY(270deg) translateZ(355px);
+} */
+.text{
+    font-size: 20px;
+    font-family: 'Dancing Script', cursive;
+    color: #444;
+}
+
+.wish-container {
+    position: relative;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    max-width: 80%;
+    font-size: 20px;
+    font-family: 'Dancing Script', cursive;
+    color: #444;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes slider{
+    from{
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    to{
+        transform: perspective(1000px) rotateY(360deg);
+    }
+}
+  
+ .heart {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: red;
+    transform: rotate(45deg);
+    animation: floatUp 3s linear forwards;
+  }
+
+  .heart::before,
+  .heart::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .heart::before {
+    top: -10px;
+    left: 0;
+  }
+
+  .heart::after {
+    left: -10px;
+    top: 0;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1) rotate(45deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-600px) scale(1.5) rotate(45deg);
+      opacity: 0;
+    }
+  }
