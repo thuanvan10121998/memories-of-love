@@ -9,65 +9,55 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <audio id="birthday-music" autoplay loop>
+<body onclick="playAudio()">
+    <audio id="myAudio" autoplay muted>
         <source src="/assets/music/yêu-không-cần-nói-feat-bảo-uyên.mp3" type="audio/mpeg">
     </audio>
 
-        <div class="container">
-            <marquee class="text" behavior="scroll" direction="left">
-                Khoảnh khắc gặp em, anh biết, mọi hành trình trong đời anh đều dẫn lối về phía em. Thế giới này rộng lớn biết bao, nhưng trái tim anh chỉ chứa đựng mình em. 🌍❤️
-            </marquee>
-            <div class="slider">
-                <div class="slider__item" style="--position: 2">
-                    <img src="/assets/image/chicken.jpg" alt="">
-                </div>
-                <div class="slider__item" style="--position: 3">
-                    <img src="/assets/image/lovediu.jpg" alt="">
-                </div>
-                <div class="slider__item" style="--position: 4">
-                    <img src="/assets/image/ph3.jpg" alt="">
-                </div>
-                <div class="slider__item" style="--position: 5">
-                    <img src="/assets/image/ph7.jpg" alt="">
-                </div>
-                <div class="slider__item" style="--position: 6">
-                    <img src="/assets/image/ph11.jpg" alt="">
-                </div>
-                <div class="slider__item" style="--position: 7">
-                    <img src="/assets/image/ph15.jpg" alt="">
-                </div>
-                <div class="slider__item" style="--position: 8">
-                    <img src="/assets/image/chicken.jpg" alt="">
-                </div>
-                <div class="slider__item" style="--position: 9">
-                    <img src="/assets/image/ph17.jpg" alt="">
-                </div>
-                <div class="slider__item" style="--position: 10">
-                    <img src="/assets/image/th.jpg" alt="">
-                </div>
-            </div>
-            <div class="wish-container">
-                22/03/2024
-            </div>
+    <div class="container">
+        <marquee class="text" behavior="scroll" direction="left">
+            Khoảnh khắc gặp em, anh biết, mọi hành trình trong đời anh đều dẫn lối về phía em. Thế giới này rộng lớn
+            biết bao, nhưng trái tim anh chỉ chứa đựng mình em. 🌍❤️
+        </marquee>
+
+        <div class="slider">
+            <!-- Các ảnh slider -->
+            <div class="slider__item" style="--position: 2"><img src="/assets/image/chicken.jpg" alt=""></div>
+            <div class="slider__item" style="--position: 3"><img src="/assets/image/lovediu.jpg" alt=""></div>
+            <div class="slider__item" style="--position: 4"><img src="/assets/image/ph3.jpg" alt=""></div>
+            <div class="slider__item" style="--position: 5"><img src="/assets/image/ph7.jpg" alt=""></div>
+            <div class="slider__item" style="--position: 6"><img src="/assets/image/ph11.jpg" alt=""></div>
+            <div class="slider__item" style="--position: 7"><img src="/assets/image/ph15.jpg" alt=""></div>
+            <div class="slider__item" style="--position: 8"><img src="/assets/image/chicken.jpg" alt=""></div>
+            <div class="slider__item" style="--position: 9"><img src="/assets/image/ph17.jpg" alt=""></div>
+            <div class="slider__item" style="--position: 10"><img src="/assets/image/th.jpg" alt=""></div>
         </div>
 
+        <div class="wish-container">
+            22/03/2024
+        </div>
+    </div>
+
     <script>
+        function playAudio() {
+            let audio = document.getElementById("myAudio");
+            audio.muted = false;
+            audio.play().catch(error => console.log("Autoplay bị chặn:", error));
+            document.body.onclick = null; // Chỉ chạy một lần
+        }
+
         function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.bottom = '0px';
-    document.body.appendChild(heart);
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            document.body.appendChild(heart);
 
-    // setTimeout(() => {
-    //   heart.remove();
-    // }, 3000);
-  }
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
 
-  setInterval(createHeart, 300);
-
-     
+        setInterval(createHeart, 500); // Tạo heart mỗi 500ms cho nhẹ nhàng
     </script>
 </body>
 

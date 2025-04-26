@@ -8,6 +8,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 
 .container {
@@ -22,66 +23,30 @@ body {
     height: 200px;
     transform-style: preserve-3d;
     transform: perspective(1000px);
-    animation: slider 20s infinite linear;
-}
-
-.slider{
-    width: 150px;
-    height: 200px;
-    transform-style: preserve-3d;
-    transform: perspective(1000px);
-    animation: slider 20s infinite linear;
+    animation: sliderRotate 20s infinite linear;
     position: relative;
+    will-change: transform;
 }
 
-.slider__item{
+.slider__item {
     position: absolute;
-    inset: 0; 
-    /* transform: rotateY(0deg) translateZ(355px); */
+    inset: 0;
     transform: rotateY(calc(var(--position) * 45deg)) translateZ(355px);
 }
 
 .slider__item img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 }
-/* 
-.slider__item:nth-child(1){
-    transform: rotateY(0deg) translateZ(355px);
-}
 
-.slider__item:nth-child(2){
-    transform: rotateY(45deg) translateZ(355px);
-}
-
-.slider__item:nth-child(3){
-    transform: rotateY(90deg) translateZ(355px);
-}
-
-.slider__item:nth-child(4){
-    transform: rotateY(135deg) translateZ(355px);
-}
-
-.slider__item:nth-child(5){
-    transform: rotateY(180deg) translateZ(355px);
-}
-
-.slider__item:nth-child(6){
-    transform: rotateY(225deg) translateZ(355px);
-}
-
-.slider__item:nth-child(7){
-    transform: rotateY(270deg) translateZ(355px);
-} */
-.text{
+.text {
     font-size: 20px;
     font-family: 'Dancing Script', cursive;
     color: #444;
 }
 
 .wish-container {
-    position: relative;
     background: rgba(255, 255, 255, 0.7);
     padding: 15px 20px;
     border-radius: 10px;
@@ -93,51 +58,58 @@ body {
     animation: fadeIn 2s ease-in-out;
 }
 
-@keyframes slider{
-    from{
-        transform: perspective(1000px) rotateY(0deg);
-    }
-    to{
-        transform: perspective(1000px) rotateY(360deg);
-    }
-}
-  
- .heart {
+.heart {
     width: 20px;
     height: 20px;
-    position: absolute;
     background-color: red;
+    position: absolute;
+    bottom: 0;
     transform: rotate(45deg);
     animation: floatUp 3s linear forwards;
-  }
+    will-change: transform, opacity;
+}
 
-  .heart::before,
-  .heart::after {
+.heart::before,
+.heart::after {
     content: "";
     width: 20px;
     height: 20px;
     background-color: red;
     border-radius: 50%;
     position: absolute;
-  }
+}
 
-  .heart::before {
+.heart::before {
     top: -10px;
     left: 0;
-  }
+}
 
-  .heart::after {
+.heart::after {
     left: -10px;
     top: 0;
-  }
+}
 
-  @keyframes floatUp {
+@keyframes sliderRotate {
+    from {
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateY(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatUp {
     0% {
-      transform: translateY(0) scale(1) rotate(45deg);
-      opacity: 1;
+        transform: translateY(0) scale(1) rotate(45deg);
+        opacity: 1;
     }
     100% {
-      transform: translateY(-600px) scale(1.5) rotate(45deg);
-      opacity: 0;
+        transform: translateY(-600px) scale(1.5) rotate(45deg);
+        opacity: 0;
     }
-  }
+}
